@@ -6,6 +6,7 @@ def quit() :
     print("===================================================================================================================\n")
     print("Thank you for playing!\n")
     print("===================================================================================================================\n")
+    exit()
 
 # special word art for title 'screen'
 def title() :
@@ -43,7 +44,7 @@ def gameOptions() :
         try:
             choice = int(input("Input the number of the game you would like to play: "))
             print('')
-            if choice < 0 or choice > 4:
+            if choice < 0 or choice > 5:
                 raise InvalidEntry
             break
         except ValueError:
@@ -234,31 +235,30 @@ def highLow():
 
     print("... The Computer has chosen a number... "+ str(CPUnumber1) + "!\n")
 
-    """
+    
     class InvalidEntry(Exception):
         "Raised when the guess is not between 1 - 100"
         pass
-    """
+    
     
     while True:
         try:
             guess = str(input("Please guess if the next number will be higher or lower than "+ str(CPUnumber1) + ": "))
             guess.lower()
-            break
             # fix input to only take 'higher' or 'lower'
-            """
-            if (guess != 'higher'or guess != 'lower'):
+            
+            if ('higher' not in guess.lower()) and ('lower' not in guess.lower()):
                 raise InvalidEntry
             break
-        """
+        
         except ValueError:
             print("Please enter 'higher' or 'lower'...\n")    
             continue
-        """
+        
         except InvalidEntry:
             print("Please enter 'higher' or 'lower'...\n")    
             continue
-        """
+        
 
     CPUnumber2 = CPUnumber1
     while (CPUnumber2 == CPUnumber1):
@@ -270,7 +270,7 @@ def highLow():
     else:
         CPUanswer = 'higher'
 
-    if (guess != str(CPUanswer)):
+    if (guess.lower() != str(CPUanswer)):
         print("Better luck next time. The number was "+ str(CPUnumber2) + ".\n")
         while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
             playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
@@ -278,6 +278,9 @@ def highLow():
             elif (playing == 'n' or playing == 'N') : gameOptions()
     else: 
         print("Wow you guessed correctly! The number was "+ str(CPUnumber2) + ".\n")
+        print("Here is your fun fact: ")
+        funFacts()
+        print('')
         while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
             playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
             if (playing == 'y' or playing == 'Y') : highLow()
@@ -312,44 +315,44 @@ def funFacts():
     elif (factNum == 4):
         print("Hot water freezes faster than cold water... Seriously. Feel free to look it up.")
     elif (factNum == 5):
-        print("fun")
+        print("Clouds weigh up to 1 million pounds or MORE.")
     elif (factNum == 6):
-        print("fun")
+        print("20% of all the oxygen you breathe is used by your brain.")
     elif (factNum == 7):
-        print("fun")
+        print("Tiger shark embryos begin attacking each other in their mother’s womb before they are even born.")
     elif (factNum == 8):
-        print("fun")
+        print("The Nobel Peace Prize is named for Alfred Nobel, the inventor of dynamite.")
     elif (factNum == 9):
-        print("fun")
+        print("If you have a fear of ducks watching you constantly, that is called 'anatidaephobia'. Quack quack.")
     elif (factNum == 10):
-        print("fun")
+        print("German chocolate cake was invented in Texas in 1852 by a man named Sam German.")
     elif (factNum == 11):
-        print("fun")
+        print("There are over 4 million vending machines around Japan, of which more than 2 million are for selling drinks.")
     elif (factNum == 12):
-        print("fun")
+        print("The current American flag was designed by a high school student in 1958.")
     elif (factNum == 13):
-        print("fun")
+        print("The # symbol isn't officially called hashtag or pound... It's called an octothorpe.")
     elif (factNum == 14):
-        print("fun")
+        print("Cap’n Crunch’s full name is Horatio Magellan Crunch.")
     elif (factNum == 15):
-        print("fun")
+        print("The Ancient Romans used to drop a piece of toast into their wine for good health - hence why we 'raise a toast'.")
     elif (factNum == 16):
-        print("fun")
+        print("The unicorn is the national animal of Scotland. The Welsh Dragon is the national animal of Wales!")
     elif (factNum == 17):
-        print("fun")
+        print("The Japanese word 'Kuchi zamishi' is the act of eating when you're not hungry because your mouth is lonely.")
     elif (factNum == 18):
-        print("fun")
+        print("One quarter of all your bones are located in your feet.")
     elif (factNum == 19):
-        print("fun")
+        print("France executed the last person by guillotine as recently as the same year 'Star Wars: A New Hope' came out.")
     elif (factNum == 20):
-        print("fun")
+        print("Cleopatra lived closer to the time Pizza Hut was founded than to when the Egyptian pyramids were built.")
     elif (factNum == 21):
-        print("fun")
+        print("A day on Venus is longer than a year on Venus. It is also the only planet in our solar system to rotate clockwise!")
     elif (factNum == 22):
-        print("fun")
+        print("Did you know sharks don't have bones? Instead its skeleton is made of cartilage.")
     elif (factNum == 23):
-        print("fun")
+        print("Despite their large size, whales seem unable to get cancer. (Check out Peto's Paradox to learn more)")
     else:
-        print("fun")
+        print("It can take from 144 to 1000 licks to reach the tootsie roll center of a Tootsie Pop.")
 
 title()

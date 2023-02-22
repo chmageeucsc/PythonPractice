@@ -6,7 +6,6 @@ def quit() :
     print("===================================================================================================================\n")
     print("Thank you for playing!\n")
     print("===================================================================================================================\n")
-    quit
 
 # special word art for title 'screen'
 def title() :
@@ -64,6 +63,7 @@ def gameOptions() :
 
     if choice == 3:
         print("[3] High Card, Low Card")
+        highLow()
 
     if choice == 4: 
         print("[4] Rock, Paper, Scissors")
@@ -85,6 +85,8 @@ def guessTheNumber() :
     CPUnumber = math.floor(random.random() * 100)
 
     numGuesses = 7
+
+    playing = ''
 
     print("...The Computer has chosen a number...\n")
 
@@ -145,26 +147,18 @@ def guessTheNumber() :
         # if the player guesses correctly
         else:
             print("Wow you guessed the number!\n")
-            playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
-            if (playing == 'y' or playing == 'Y') : guessTheNumber()
-            elif (playing == 'n' or playing == 'N') : gameOptions()
-            else: 
-                while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
-                    playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
-                    if (playing == 'y' or playing == 'Y') : guessTheNumber()
-                    elif (playing == 'n' or playing == 'N') : gameOptions()
-
-    # if the player cannot guess in 7 tries, ask to play again or go to main menu
-    if (numGuesses == 0):
-        print("Better luck next time! The number was "+ str(CPUnumber) + ".\n")
-        playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
-        if (playing == 'y' or playing == 'Y') : guessTheNumber()
-        elif (playing == 'n' or playing == 'N') : gameOptions()
-        else: 
             while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
                 playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
                 if (playing == 'y' or playing == 'Y') : guessTheNumber()
                 elif (playing == 'n' or playing == 'N') : gameOptions()
+
+    # if the player cannot guess in 7 tries, ask to play again or go to main menu
+    if (numGuesses == 0):
+        print("Better luck next time! The number was "+ str(CPUnumber) + ".\n")
+        while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
+            playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
+            if (playing == 'y' or playing == 'Y') : guessTheNumber()
+            elif (playing == 'n' or playing == 'N') : gameOptions()
 
 def guessTheSuit() :
     print("\n===================================================================================================================\n")    
@@ -177,7 +171,8 @@ def guessTheSuit() :
     CPUnumber = math.floor(random.random() * 100)
     CPUnumber = (CPUnumber % 4) + 1
     CPUanswer = 'none'
-    CPUnumber = 1
+
+    playing = ''
 
     if(CPUnumber == 1):
         CPUanswer = 'hearts'
@@ -208,22 +203,80 @@ def guessTheSuit() :
 
     if (guess != str(CPUanswer)):
         print("Better luck next time. The suit was "+ str(CPUanswer) + ".\n")
-        playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
-        if (playing == 'y' or playing == 'Y') : guessTheSuit()
-        elif (playing == 'n' or playing == 'N') : gameOptions()
-        else: 
-            while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
-                playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
-                if (playing == 'y' or playing == 'Y') : guessTheSuit()
-                elif (playing == 'n' or playing == 'N') : gameOptions()
+        while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
+            playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
+            if (playing == 'y' or playing == 'Y') : guessTheSuit()
+            elif (playing == 'n' or playing == 'N') : gameOptions()
     else: 
         print("Wow you guessed the suit!\n")
-        playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
-        if (playing == 'y' or playing == 'Y') : guessTheSuit()
-        elif (playing == 'n' or playing == 'N') : gameOptions()
-        else: 
-            while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
-                playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
-                if (playing == 'y' or playing == 'Y') : guessTheSuit()
-                elif (playing == 'n' or playing == 'N') : gameOptions()
+        while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
+            playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
+            if (playing == 'y' or playing == 'Y') : guessTheSuit()
+            elif (playing == 'n' or playing == 'N') : gameOptions()
+
+def highLow():
+    print("\n===================================================================================================================\n")    
+
+    print("INSTRUCTIONS: The computer will choose a number between 1-9. You must guess if the next card will be higher or lower.")
+    print("If you guess correctly, the computer will tell you a fun fact.\n\nGood luck!\n")
+
+    print("===================================================================================================================\n")
+
+    CPUnumber1 = math.floor(random.random() * 100)
+    CPUnumber1 = (CPUnumber1 % 9) + 1
+    CPUanswer = 'equal'
+
+    playing = ''
+
+    print("... The Computer has chosen a number... "+ str(CPUnumber1) + "!\n")
+
+    """
+    class InvalidEntry(Exception):
+        "Raised when the guess is not between 1 - 100"
+        pass
+    """
+    
+    while True:
+        try:
+            guess = str(input("Please guess if the next number will be higher or lower than "+ str(CPUnumber1) + ": "))
+            guess.lower()
+            break
+            # fix input to only take 'higher' or 'lower'
+            """
+            if (guess != 'higher'or guess != 'lower'):
+                raise InvalidEntry
+            break
+        """
+        except ValueError:
+            print("Please enter 'higher' or 'lower'...\n")    
+            continue
+        """
+        except InvalidEntry:
+            print("Please enter 'higher' or 'lower'...\n")    
+            continue
+        """
+
+    CPUnumber2 = CPUnumber1
+    while (CPUnumber2 == CPUnumber1):
+        CPUnumber2 = math.floor(random.random() * 100)
+        CPUnumber2 = (CPUnumber2 % 9) + 1
+
+    if (CPUnumber2 < CPUnumber1):
+        CPUanswer = 'lower'
+    else:
+        CPUanswer = 'higher'
+
+    if (guess != str(CPUanswer)):
+        print("Better luck next time. The number was "+ str(CPUnumber2) + ".\n")
+        while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
+            playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
+            if (playing == 'y' or playing == 'Y') : highLow()
+            elif (playing == 'n' or playing == 'N') : gameOptions()
+    else: 
+        print("Wow you guessed correctly! The number was "+ str(CPUnumber2) + ".\n")
+        while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
+            playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
+            if (playing == 'y' or playing == 'Y') : highLow()
+            elif (playing == 'n' or playing == 'N') : gameOptions()
+
 title()

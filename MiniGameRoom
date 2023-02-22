@@ -60,6 +60,7 @@ def gameOptions() :
 
     if choice == 2:
         print("[2] Guess the Suit")
+        guessTheSuit()
 
     if choice == 3:
         print("[3] High Card, Low Card")
@@ -164,8 +165,7 @@ def guessTheNumber() :
                 playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
                 if (playing == 'y' or playing == 'Y') : guessTheNumber()
                 elif (playing == 'n' or playing == 'N') : gameOptions()
-    
-"""
+
 def guessTheSuit() :
     print("\n===================================================================================================================\n")    
 
@@ -175,64 +175,55 @@ def guessTheSuit() :
     print("===================================================================================================================\n")
 
     CPUnumber = math.floor(random.random() * 100)
-    CPUnumber = CPUnumber % 4
+    CPUnumber = (CPUnumber % 4) + 1
+    CPUanswer = 'none'
+    CPUnumber = 1
+
+    if(CPUnumber == 1):
+        CPUanswer = 'hearts'
+    if(CPUnumber == 2):
+        CPUanswer = 'spades'
+    if(CPUnumber == 3):
+        CPUanswer = 'diamonds'
+    if(CPUnumber == 4):
+        CPUanswer = 'clubs'
 
     print("...The Computer has chosen a suit...\n")
 
-    # define Python user-defined exceptions
-    class InvalidEntry(Exception):
-        "Raised when the guess is not one of the four card suits"
-        pass
+    print("Please select from the following choices:\n")
+    print("- Hearts")
+    print("- Spades")
+    print("- Diamonds")
+    print("- Clubs")
 
     # input a number
     while True:
         try:
-            guess = input("Enter your guess: ")
-            if (guess < 1 or guess > 100):
-                raise InvalidEntry
+            guess = str(input("Enter your guess: "))
+            guess.lower()
             break
         except ValueError:
-            print("Please enter a number...\n")    
-            continue
-        except InvalidEntry:
-            print("Please enter one of the four card suits\n") 
+            print("Please enter a suit...\n")    
             continue
 
-    while (guess != CPUnumber):
-        if (guess > CPUnumber):
-            print("Your guess was higher than the number.")
-            try:
-                guess = int(input("Enter your guess: "))
-                if guess < 1 or guess > 100:
-                    raise InvalidEntry
-                break
-            except ValueError:
-                print("Please enter a number...\n")    
-                continue
-            except InvalidEntry:
-                print("Please enter one of the four card suits\n")  
-                continue
-        elif (guess < CPUnumber):
-            print("Your guess was lower than the number.")
-            try:
-                guess = int(input("Enter your guess: "))
-                if guess < 1 or guess > 100:
-                    raise InvalidEntry
-                break
-            except ValueError:
-                print("Please enter a number...\n")    
-                continue
-            except InvalidEntry:
-                print("Please enter one of the four card suits\n")  
-                continue
-
-    print("Wow you guessed the suit!\n")
-    playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
-    if (playing == 'y' or playing == 'Y') : guessTheNumber()
-    elif (playing == 'n' or playing == 'N') : gameOptions()
+    if (guess != str(CPUanswer)):
+        print("Better luck next time. The suit was "+ str(CPUanswer) + ".\n")
+        playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
+        if (playing == 'y' or playing == 'Y') : guessTheSuit()
+        elif (playing == 'n' or playing == 'N') : gameOptions()
+        else: 
+            while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
+                playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
+                if (playing == 'y' or playing == 'Y') : guessTheSuit()
+                elif (playing == 'n' or playing == 'N') : gameOptions()
     else: 
-        while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
-            playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
-            print('')
-"""
+        print("Wow you guessed the suit!\n")
+        playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
+        if (playing == 'y' or playing == 'Y') : guessTheSuit()
+        elif (playing == 'n' or playing == 'N') : gameOptions()
+        else: 
+            while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
+                playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
+                if (playing == 'y' or playing == 'Y') : guessTheSuit()
+                elif (playing == 'n' or playing == 'N') : gameOptions()
 title()

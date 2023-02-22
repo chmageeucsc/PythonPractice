@@ -67,9 +67,11 @@ def gameOptions() :
 
     if choice == 4: 
         print("[4] Rock, Paper, Scissors")
+        RPS()
 
     if choice == 5:
         print("[5] Mad Libs")
+        madLibs()
 
     if choice == 0: quit()
 
@@ -160,6 +162,7 @@ def guessTheNumber() :
             if (playing == 'y' or playing == 'Y') : guessTheNumber()
             elif (playing == 'n' or playing == 'N') : gameOptions()
 
+# add fun facts code
 def guessTheSuit() :
     print("\n===================================================================================================================\n")    
 
@@ -214,6 +217,7 @@ def guessTheSuit() :
             if (playing == 'y' or playing == 'Y') : guessTheSuit()
             elif (playing == 'n' or playing == 'N') : gameOptions()
 
+# add fun facts code
 def highLow():
     print("\n===================================================================================================================\n")    
 
@@ -278,5 +282,74 @@ def highLow():
             playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
             if (playing == 'y' or playing == 'Y') : highLow()
             elif (playing == 'n' or playing == 'N') : gameOptions()
+
+def RPS():
+    print("Rock, Paper, Scissors")
+    CPUrandom = math.floor(random.random() * 100)
+    CPUrandom = (CPUrandom % 3)
+
+    if (CPUrandom == 0):
+        print("rock")
+    elif (CPUrandom == 1):
+        print("paper")
+    else:
+        print("scissors")
+
+def madLibs():
+    print("MadLibs")
+
+def funFacts():
+    factNum = math.floor(random.random() * 100)
+    factNum = (factNum % 25)
+    if (factNum == 0):
+        print("There are more trees on Earth than there are stars in the Milky Way(3 trillion trees vs 100-400 billion stars).")
+    elif (factNum == 1):
+        print("It can rain diamonds on Nepture, Uranus, and Saturn.")
+    elif (factNum == 2):
+        print("There is enough DNA in the average person's body to stretch from the sun to Pluto and back — 17 times!")
+    elif (factNum == 3):
+        print("In an entire lifetime, the average person walks the equivalent of five times around the world.")
+    elif (factNum == 4):
+        print("Hot water freezes faster than cold water... Seriously. Feel free to look it up.")
+    elif (factNum == 5):
+        print("fun")
+    elif (factNum == 6):
+        print("fun")
+    elif (factNum == 7):
+        print("fun")
+    elif (factNum == 8):
+        print("fun")
+    elif (factNum == 9):
+        print("fun")
+    elif (factNum == 10):
+        print("fun")
+    elif (factNum == 11):
+        print("fun")
+    elif (factNum == 12):
+        print("fun")
+    elif (factNum == 13):
+        print("fun")
+    elif (factNum == 14):
+        print("fun")
+    elif (factNum == 15):
+        print("fun")
+    elif (factNum == 16):
+        print("fun")
+    elif (factNum == 17):
+        print("fun")
+    elif (factNum == 18):
+        print("fun")
+    elif (factNum == 19):
+        print("fun")
+    elif (factNum == 20):
+        print("fun")
+    elif (factNum == 21):
+        print("fun")
+    elif (factNum == 22):
+        print("fun")
+    elif (factNum == 23):
+        print("fun")
+    else:
+        print("fun")
 
 title()

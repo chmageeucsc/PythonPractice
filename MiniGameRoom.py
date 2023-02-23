@@ -80,7 +80,8 @@ def guessTheNumber() :
     print("\n===================================================================================================================\n")    
 
     print("INSTRUCTIONS: The computer will choose a number between 1 - 100. You will try to guess the number within 7 turns.")
-    print("After every turn, the computer will tell you whether your guess was too high, too low, or correct.\n\nGood luck!\n")
+    print("After every turn, the computer will tell you whether your guess was too high, too low, or correct.")
+    print("If you guess correctly, the computer will tell you a fun fact.\n\nGood luck!\n")
 
     print("===================================================================================================================\n")
 
@@ -150,6 +151,9 @@ def guessTheNumber() :
         # if the player guesses correctly
         else:
             print("Wow you guessed the number!\n")
+            print("Here is your fun fact: ")
+            funFacts()
+            print('')
             while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
                 playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
                 if (playing == 'y' or playing == 'Y') : guessTheNumber()
@@ -163,7 +167,6 @@ def guessTheNumber() :
             if (playing == 'y' or playing == 'Y') : guessTheNumber()
             elif (playing == 'n' or playing == 'N') : gameOptions()
 
-# add fun facts code
 def guessTheSuit() :
     print("\n===================================================================================================================\n")    
 
@@ -195,17 +198,26 @@ def guessTheSuit() :
     print("- Diamonds")
     print("- Clubs")
 
-    # input a number
+    class InvalidEntry(Exception):
+        "Raised when the guess is not one of the four card suits"
+        pass
+
+    # input a suit
     while True:
         try:
             guess = str(input("Enter your guess: "))
             guess.lower()
+            if ('hearts' not in guess.lower()) and ('spades' not in guess.lower()) and ('diamonds' not in guess.lower()) and ('clubs' not in guess.lower()):
+                raise InvalidEntry
             break
         except ValueError:
-            print("Please enter a suit...\n")    
+            print("Please enter a valid suit...\n")    
+            continue
+        except InvalidEntry:
+            print("Please enter a valid suit...\n")    
             continue
 
-    if (guess != str(CPUanswer)):
+    if (guess.lower() != str(CPUanswer)):
         print("Better luck next time. The suit was "+ str(CPUanswer) + ".\n")
         while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
             playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
@@ -213,12 +225,14 @@ def guessTheSuit() :
             elif (playing == 'n' or playing == 'N') : gameOptions()
     else: 
         print("Wow you guessed the suit!\n")
+        print("Here is your fun fact: ")
+        funFacts()
+        print('')
         while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
             playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
             if (playing == 'y' or playing == 'Y') : guessTheSuit()
             elif (playing == 'n' or playing == 'N') : gameOptions()
 
-# add fun facts code
 def highLow():
     print("\n===================================================================================================================\n")    
 
@@ -234,10 +248,9 @@ def highLow():
     playing = ''
 
     print("... The Computer has chosen a number... "+ str(CPUnumber1) + "!\n")
-
     
     class InvalidEntry(Exception):
-        "Raised when the guess is not between 1 - 100"
+        "Raised when the guess is not 'higher' or 'lower"
         pass
     
     
@@ -245,8 +258,6 @@ def highLow():
         try:
             guess = str(input("Please guess if the next number will be higher or lower than "+ str(CPUnumber1) + ": "))
             guess.lower()
-            # fix input to only take 'higher' or 'lower'
-            
             if ('higher' not in guess.lower()) and ('lower' not in guess.lower()):
                 raise InvalidEntry
             break
@@ -287,16 +298,75 @@ def highLow():
             elif (playing == 'n' or playing == 'N') : gameOptions()
 
 def RPS():
-    print("Rock, Paper, Scissors")
+    
+    print("\n===================================================================================================================\n")    
+
+    print("INSTRUCTIONS: The computer will choose rock, paper, or scissors. You must choose the option that will beat the computer.")
+    print("Rock beats Scissors. Scissors beats Paper. Paper beats Rock.")
+    print("If you win, the computer will tell you a fun fact.\n\nGood luck!\n")
+
+    print("===================================================================================================================\n")
+
     CPUrandom = math.floor(random.random() * 100)
     CPUrandom = (CPUrandom % 3)
+    CPUhand = 'none'
+
+    playing = ''
 
     if (CPUrandom == 0):
-        print("rock")
+        CPUhand = 'rock'
     elif (CPUrandom == 1):
-        print("paper")
+        CPUhand = 'paper'
     else:
-        print("scissors")
+        CPUhand = 'scissors'
+
+    print("...The Computer has chosen a suit...\n")
+
+    print("Please select from the following choices:\n")
+    print("- Rock")
+    print("- Paper")
+    print("- Scissors\n")
+
+    class InvalidEntry(Exception):
+        "Raised when the choice is not one of the three options."
+        pass
+
+    # input a hand
+    while True:
+        try:
+            choice = str(input("Enter your choice: "))
+            choice.lower()
+            if ('rock' not in choice.lower()) and ('paper' not in choice.lower()) and ('scissors' not in choice.lower()):
+                raise InvalidEntry
+            break
+        except ValueError:
+            print("Please enter a valid hand...\n")    
+            continue
+        except InvalidEntry:
+            print("Please enter a valid hand...\n")    
+            continue
+
+    if (choice.lower() == 'rock' and CPUhand == 'scissors') or (choice.lower() == 'scissors' and CPUhand == 'paper') or (choice.lower() == 'paper' and CPUhand == 'rock'):
+        print("Better luck next time. The computer chose "+ str(CPUhand) + " which beats your "+ choice.lower() + ".\n")
+        while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
+            playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
+            if (playing == 'y' or playing == 'Y') : RPS()
+            elif (playing == 'n' or playing == 'N') : gameOptions()
+    elif (choice.lower() == CPUhand):
+        print("You both chose "+ CPUhand+ "! No winner this round.")
+        while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
+            playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
+            if (playing == 'y' or playing == 'Y') : RPS()
+            elif (playing == 'n' or playing == 'N') : gameOptions()
+    else: 
+        print("Wow you won! You chose "+ choice.lower() + " which beats the computer's "+ CPUhand + ".\n")
+        print("Here is your fun fact: ")
+        funFacts()
+        print('')
+        while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
+            playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
+            if (playing == 'y' or playing == 'Y') : RPS()
+            elif (playing == 'n' or playing == 'N') : gameOptions()
 
 def madLibs():
     print("MadLibs")
@@ -319,7 +389,7 @@ def funFacts():
     elif (factNum == 6):
         print("20% of all the oxygen you breathe is used by your brain.")
     elif (factNum == 7):
-        print("Tiger shark embryos begin attacking each other in their mother’s womb before they are even born.")
+        print("Tiger shark embryos begin attacking each other in their mother's womb before they are even born.")
     elif (factNum == 8):
         print("The Nobel Peace Prize is named for Alfred Nobel, the inventor of dynamite.")
     elif (factNum == 9):
@@ -333,7 +403,7 @@ def funFacts():
     elif (factNum == 13):
         print("The # symbol isn't officially called hashtag or pound... It's called an octothorpe.")
     elif (factNum == 14):
-        print("Cap’n Crunch’s full name is Horatio Magellan Crunch.")
+        print("Cap'n Crunch's full name is Horatio Magellan Crunch.")
     elif (factNum == 15):
         print("The Ancient Romans used to drop a piece of toast into their wine for good health - hence why we 'raise a toast'.")
     elif (factNum == 16):
@@ -349,7 +419,7 @@ def funFacts():
     elif (factNum == 21):
         print("A day on Venus is longer than a year on Venus. It is also the only planet in our solar system to rotate clockwise!")
     elif (factNum == 22):
-        print("Did you know sharks don't have bones? Instead its skeleton is made of cartilage.")
+        print("Did you know sharks don't have bones? Instead, its skeleton is made of cartilage.")
     elif (factNum == 23):
         print("Despite their large size, whales seem unable to get cancer. (Check out Peto's Paradox to learn more)")
     else:

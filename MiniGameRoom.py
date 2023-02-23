@@ -175,6 +175,7 @@ def guessTheSuit() :
 
     print("===================================================================================================================\n")
 
+    # pseudo-randomly selects a number between 1 and 100 -> for choosing 1/4 suits
     CPUnumber = math.floor(random.random() * 100)
     CPUnumber = (CPUnumber % 4) + 1
     CPUanswer = 'none'
@@ -206,8 +207,8 @@ def guessTheSuit() :
     while True:
         try:
             guess = str(input("Enter your guess: "))
-            guess.lower()
-            if ('hearts' not in guess.lower()) and ('spades' not in guess.lower()) and ('diamonds' not in guess.lower()) and ('clubs' not in guess.lower()):
+            guess = guess.lower()
+            if ('hearts' not in guess) and ('spades' not in guess) and ('diamonds' not in guess) and ('clubs' not in guess):
                 raise InvalidEntry
             break
         except ValueError:
@@ -217,7 +218,7 @@ def guessTheSuit() :
             print("Please enter a valid suit...\n")    
             continue
 
-    if (guess.lower() != str(CPUanswer)):
+    if (guess != str(CPUanswer)):
         print("Better luck next time. The suit was "+ str(CPUanswer) + ".\n")
         while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
             playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
@@ -241,6 +242,7 @@ def highLow():
 
     print("===================================================================================================================\n")
 
+    # pseudo-randomly selects a number between 1 and 100 -> for choosing between 1 - 9
     CPUnumber1 = math.floor(random.random() * 100)
     CPUnumber1 = (CPUnumber1 % 9) + 1
     CPUanswer = 'equal'
@@ -253,12 +255,11 @@ def highLow():
         "Raised when the guess is not 'higher' or 'lower"
         pass
     
-    
     while True:
         try:
             guess = str(input("Please guess if the next number will be higher or lower than "+ str(CPUnumber1) + ": "))
-            guess.lower()
-            if ('higher' not in guess.lower()) and ('lower' not in guess.lower()):
+            guess = guess.lower()
+            if ('higher' not in guess) and ('lower' not in guess):
                 raise InvalidEntry
             break
         
@@ -270,7 +271,7 @@ def highLow():
             print("Please enter 'higher' or 'lower'...\n")    
             continue
         
-
+    # CPUnumber2 cannot equal CPUnumber1 so it gets changed
     CPUnumber2 = CPUnumber1
     while (CPUnumber2 == CPUnumber1):
         CPUnumber2 = math.floor(random.random() * 100)
@@ -281,7 +282,7 @@ def highLow():
     else:
         CPUanswer = 'higher'
 
-    if (guess.lower() != str(CPUanswer)):
+    if (guess != str(CPUanswer)):
         print("Better luck next time. The number was "+ str(CPUnumber2) + ".\n")
         while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
             playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
@@ -307,6 +308,7 @@ def RPS():
 
     print("===================================================================================================================\n")
 
+    # pseudo-randomly selects a number between 1 and 100 -> for choosing between 3 options
     CPUrandom = math.floor(random.random() * 100)
     CPUrandom = (CPUrandom % 3)
     CPUhand = 'none'
@@ -335,8 +337,8 @@ def RPS():
     while True:
         try:
             choice = str(input("Enter your choice: "))
-            choice.lower()
-            if ('rock' not in choice.lower()) and ('paper' not in choice.lower()) and ('scissors' not in choice.lower()):
+            choice = choice.lower()
+            if ('rock' not in choice) and ('paper' not in choice) and ('scissors' not in choice):
                 raise InvalidEntry
             break
         except ValueError:
@@ -346,20 +348,23 @@ def RPS():
             print("Please enter a valid hand...\n")    
             continue
 
-    if (choice.lower() == 'rock' and CPUhand == 'scissors') or (choice.lower() == 'scissors' and CPUhand == 'paper') or (choice.lower() == 'paper' and CPUhand == 'rock'):
-        print("Better luck next time. The computer chose "+ str(CPUhand) + " which beats your "+ choice.lower() + ".\n")
+    # if CPU beats player
+    if (choice == 'rock' and CPUhand == 'scissors') or (choice == 'scissors' and CPUhand == 'paper') or (choice == 'paper' and CPUhand == 'rock'):
+        print("Better luck next time. The computer chose "+ str(CPUhand) + " which beats your "+ choice + ".\n")
         while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
             playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
             if (playing == 'y' or playing == 'Y') : RPS()
             elif (playing == 'n' or playing == 'N') : gameOptions()
-    elif (choice.lower() == CPUhand):
+    # if there's a draw
+    elif (choice == CPUhand):
         print("You both chose "+ CPUhand+ "! No winner this round.")
         while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
             playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
             if (playing == 'y' or playing == 'Y') : RPS()
             elif (playing == 'n' or playing == 'N') : gameOptions()
+    # if player beats CPU
     else: 
-        print("Wow you won! You chose "+ choice.lower() + " which beats the computer's "+ CPUhand + ".\n")
+        print("Wow you won! You chose "+ choice + " which beats the computer's "+ CPUhand + ".\n")
         print("Here is your fun fact: ")
         funFacts()
         print('')

@@ -374,7 +374,117 @@ def RPS():
             elif (playing == 'n' or playing == 'N') : gameOptions()
 
 def madLibs():
-    print("MadLibs")
+    playing = ''
+
+    # input anything
+    while True:
+        try:
+            choice = input("Enter anything: ")
+            break
+        except ValueError:
+            print("Please enter something...")  
+            continue
+
+    choice = len(choice) % 4
+
+    print("\nTime to make a Mad Lib!\n")
+
+    if choice == 0: 
+        mission_name = input("Enter your name: ").upper()
+        mission_verb1 = input("Enter a verb: ").upper()
+        mission_adj1 = input("Enter an adjective: ").upper()
+        mission_funkyWord = input("Enter a silly word: ").upper()
+        mission_num = input("Enter a number: ").upper()
+        mission_noun1 = input("Enter a noun: ").upper()
+        mission_adj2 = input("Enter another adjective: ").upper()
+        mission_noun2 = input("Enter another noun: ").upper()
+        mission_occupation = input("Enter an occupation: ").upper()  
+        mission_time = input("Enter an amount of time: ").upper()
+        mission_verb2 = input("Enter another verb: ").upper()
+        mission_location = input("Enter a location: ").upper()
+        mission_verb3 = input("Enter a verb ending in '-ed': ").upper()
+        mission_noun3 = input("Enter a plural noun: ").upper()
+        mission_adj3 = input("Enter another adjective: ").upper()
+        mission_verb4 = input("Enter a verb ending in '-ing': ").upper()
+        mission_verb5 = input("Enter another verb: ").upper()
+        
+        print("\nGood morning, " + mission_name + ".\n")
+        print("Your mission, should you choose to "+ mission_verb1 +
+                " it, involves the recovery of a "+ mission_adj1 + " item designated '"+ mission_funkyWord + "'.\n")
+        print("You may select any "+ mission_num + " "+ mission_noun1 + " members, but it is "+ mission_adj2 + 
+                " that the third member of your "+ mission_noun1 + " be Nyah Nordoff-Hall. She is a "+ mission_noun2 +
+                ", and a highly capable professional "+ mission_occupation + 
+                ". You have "+ mission_time + " to "+ mission_verb2 + " Miss Hall and meet me in "+ mission_location + 
+                " to receive your assignment.\n")
+        print("As always, should any member of your "+ mission_noun1 + " be caught or "+ mission_verb3 + 
+                ", the Secretary will disavow all knowledge of your "+ mission_noun3 + 
+                ". And "+ mission_name + ", the next time you go on holiday, please be "+ mission_adj3 + 
+                " enough to let us know where you're "+ mission_verb4 + ".\n")
+        print("This message will self-"+ mission_verb5 + " in five seconds.\n\nBoom.\n")
+
+    if choice == 1: 
+        twelfth_holiday = input("Enter a holiday: ").upper()
+        twelfth_adj1 = input("Enter an adjective: ").upper()
+        twelfth_occ1 = input("Enter a plural occupation: ").upper()
+        twelfth_verb1 = input("Enter a verb ending in '-ing': ").upper()
+        twelfth_verb2 = input("Enter another verb ending in '-ing': ").upper()
+        twelfth_noun1 = input("Enter a plural noun: ").upper()
+        twelfth_noun2 = input("Enter another plural noun: ").upper()
+        twelfth_occ2 = input("Enter another plural occupation: ").upper()
+        twelfth_verb3 = input("Enter another verb ending in '-ing': ").upper()
+        twelfth_noun3 = input("Enter another plural noun: ").upper()
+        twelfth_adj2 = input("Enter another adjective: ").upper()
+        twelfth_verb4 = input("Enter another verb ending in '-ing': ").upper()
+        twelfth_nationality = input("Enter a nationality: ").upper()
+        twelfth_noun4 = input("Enter another plural noun: ").upper()
+        twelfth_animal = input("Enter an animal: ").upper()
+        twelfth_food = input("Enter a food: ").upper()
+
+        print("\nOn the twelfth day of "+ twelfth_holiday + ", my "+ twelfth_adj1 + 
+        " love sent to me \n\nTwelve "+ twelfth_occ1 + " "+ twelfth_verb1 + 
+        ", \nEleven pipers "+ twelfth_verb2 + ", \nTen "+ twelfth_noun1 + 
+        " a leaping, \nNine "+ twelfth_noun2 + " dancing, \nEight "+ twelfth_occ2 + 
+        " a milking, \nSeven swans a "+ twelfth_verb3 + ", \nSix "+ twelfth_noun3 + 
+        " a laying, \nFive "+ twelfth_adj2 + " rings, \nFour "+ twelfth_verb4 + 
+        " birds, \nThree "+ twelfth_nationality + " Hens, \nTwo turtle "+ twelfth_noun4 + 
+        ", \nAnd a/an "+ twelfth_animal + " in a/an "+ twelfth_food + 
+        " tree.\n\nHappy "+ twelfth_holiday + "!\n")
+
+    if choice == 2: 
+        day_verb1 = input("Enter a verb ending in '-ing': ").upper()
+        day_verb2 = input("Enter another verb ending in '-ing': ").upper()
+        day_verb3 = input("Enter a verb ending in '-ed': ").upper()
+        day_adj1 = input("Enter an adjective: ").upper()
+        day_adj2 = input("Enter another adjective: ").upper()
+        day_adv = input("Enter an adverb: ").upper()
+        day_place = input("Enter a place: ").upper()
+        day_verb4 = input("Enter a verb: ").upper()
+        day_verb5 = input("Enter another verb: ").upper()
+
+        print("\nTommorrow is a new day full of new suprises and new adventures. Such as "+ day_verb1 + 
+        " and "+ day_verb2 + ". \nTommorrow leads you to the life you haven't "+ day_verb3 + 
+        " yet. So why not plan to live today with the most "+ day_adj1 + " and "+ day_adj2 + 
+        " outlook. \nBecause today is yesterday's tommorrow and we all know that it's good to do things "+ day_adv + 
+        ". \nSo let's go to "+ day_place + " and "+ day_verb4 + " with someone cool. Or you could just let it "+ day_verb5 + " right by.\n")
+
+    if choice == 3:
+        alien_noun1 = input("Enter a plural noun: ").upper()
+        alien_occupation = input("Enter an occupation: ").upper()
+        alien_animal = input("Enter an animal: ").upper()
+        alien_place = input("Enter a place: ").upper()
+        alien_verb1 = input("Enter a verb: ").upper()
+        alien_verb2 = input("Enter a verb ending in '-ed': ").upper()
+        alien_noun2 = input("Enter another noun: ").upper()
+
+        print("\nIn the book 'War of the "+ alien_noun1 + "', the main character is an anonymous "+ alien_occupation + 
+            " who records the arrival of "+ alien_animal +" in "+ alien_place+ ". Needless to say, havoc reigns as the "+ alien_animal + 
+            " continue to "+ alien_verb1 + " everything in sight, until they are "+ alien_verb2 + " by the common "+ alien_noun2 +".\n")
+    
+    print("What a unique Mad Lib!\n")
+    while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
+        playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")
+        if (playing == 'y' or playing == 'Y') : madLibs()
+        elif (playing == 'n' or playing == 'N') : gameOptions()
 
 def funFacts():
     factNum = math.floor(random.random() * 100)

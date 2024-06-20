@@ -338,7 +338,7 @@ def RPS():
         try:
             choice = str(input("Enter your choice: "))
             choice = choice.lower()
-            if ('rock' not in choice) and ('paper' not in choice) and ('scissors' not in choice):
+            if choice not in ["rock", "paper", "scissors"]:
                 raise InvalidEntry
             break
         except ValueError:
@@ -349,7 +349,7 @@ def RPS():
             continue
 
     # if CPU beats player
-    if (choice == 'rock' and CPUhand == 'scissors') or (choice == 'scissors' and CPUhand == 'paper') or (choice == 'paper' and CPUhand == 'rock'):
+    if (choice == 'paper' and CPUhand == 'scissors') or (choice == 'rock' and CPUhand == 'paper') or (choice == 'scissors' and CPUhand == 'rock'):
         print("Better luck next time. The computer chose "+ str(CPUhand) + " which beats your "+ choice + ".\n")
         while (playing != 'y' or playing != 'Y' or playing != 'n' or playing != 'N') :
             playing = input("Play again? (Y) Return to the Mini Game Room? (N): ")

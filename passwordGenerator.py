@@ -23,27 +23,15 @@ def generate_password(min_length, numbers=True, special_characters=True):
         pwd += new_char
 
         if new_char in digits:
-            print("New digit is", new_char)
             has_number = True
         elif new_char in special:
-            print("New special is", new_char)
             has_special = True
-            print("has special???", has_special, "\n\n")
-        else:
-            print("New letter is", new_char)
 
         meets_criteria = True
         if numbers:
             meets_criteria = has_number
         if special_characters:
             meets_criteria = meets_criteria and has_special
-
-        # tests
-        print("Password:", pwd)
-        print("has number:", has_number)
-        print("has special:", has_special)
-        print("has meets:", meets_criteria, "\n")
-        time.sleep(4)
 
     return pwd
 

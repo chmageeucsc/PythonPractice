@@ -12,6 +12,20 @@ def download_video(url, save_path):
     except Exception as e:
         print(e)
 
-url = "https://www.youtube.com/watch?v=AIyzEeoNay0"
-save_path = "C:/Users/cgee1/OneDrive/Documents/GitHub/PythonPractice"
-download_video(url, save_path)
+def open_file_dialogue():
+    folder = filedialog.askdirectory()
+    if folder:
+        print(f"Selected folder: {folder}")
+        return folder
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.withdraw()
+
+    video_url = input("Please enter a YouTube url: ")
+    save_dir = open_file_dialogue()
+
+    if not save_dir:
+        print("Invalid save location.")
+    else:
+        download_video(video_url,save_dir)

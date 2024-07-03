@@ -2,6 +2,7 @@
 
 import pygame
 from os.path import join
+import random
 
 # general setup
 pygame.init()
@@ -15,8 +16,11 @@ surf = pygame.Surface((100,200))
 surf.fill('pink')
 x = 100
 
-# importing an image (starting directory is python practice file)
+# importing an image/surface (starting directory is python practice file)
 player_surf = pygame.image.load(join('space shooter', 'images', 'player.png')).convert_alpha()
+
+star_surf = pygame.image.load(join('space shooter', 'images', 'star.png')).convert_alpha()
+star_positions = [(random.randint(0, WINDOW_WIDTH), random.randint(0, WINDOW_HEIGHT)) for i in range(20)]
 
 while running:
     # event loop
@@ -27,6 +31,8 @@ while running:
     # draw the game
     display_surface.fill('darkgray')
     x += 0.1
+    for pos in star_positions:
+        display_surface.blit(star_surf, pos)
     display_surface.blit(player_surf,(x,150))
     pygame.display.update()
 

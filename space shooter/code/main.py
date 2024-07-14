@@ -54,6 +54,18 @@ class Laser(pygame.sprite.Sprite):
         if self.rect.bottom < 0:
             self.kill()
 
+class Meteor(pygame.sprite.Sprite):
+    def __init__(self, surf, groups):
+        super().__init__(groups)
+        self.image = surf
+        self.rect = self.image.get_frect(center = (random.randint(0, WINDOW_WIDTH), random.randint(0, WINDOW_HEIGHT)))
+
+    def update(self, dt):
+        self.rect.centery -= 200 * dt
+        current_time = pygame.time.get_ticks()
+        if current_time % 2000 == 0:
+            self.kill()
+
 # general setup
 pygame.init()
 WINDOW_WIDTH, WINDOW_HEIGHT = 1280, 720
@@ -88,8 +100,8 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        # if event.type == meteor_event:
-        #     print("create meteor")
+        if event.type == meteor_event:
+            Meteor(meteor_surf, all_sprites)
 
     # update
     all_sprites.update(dt)

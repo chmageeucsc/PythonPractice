@@ -20,14 +20,17 @@ class Game:
         while self.running:
             # dt
             dt = self.clock.tick() / 1000
+
             # event loop
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                    
             # update
             self.all_sprites.update(dt)
 
             # draw
+            self.display_surfface.fill('black')
             self.all_sprites.draw(self.display_surfface)
             pygame.display.update()
 

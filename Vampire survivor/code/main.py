@@ -11,7 +11,7 @@ class Game:
         self.running = True
 
         # groups
-        self.all_sprites = pygame.sprites.Group()
+        self.all_sprites = pygame.sprite.Group()
 
         # sprites
         self.player = Player((400, 300), self.all_sprites)
@@ -25,8 +25,10 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.running = False
             # update
+            self.all_sprites.update(dt)
 
             # draw
+            self.all_sprites.draw(self.display_surfface)
             pygame.display.update()
 
         pygame.quit()

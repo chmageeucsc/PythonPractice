@@ -1,4 +1,3 @@
-from pygame.sprite import _Group
 from settings import *
 
 class Player(pygame.sprite.Sprite):

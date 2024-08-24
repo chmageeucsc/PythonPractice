@@ -29,6 +29,9 @@ class Player(pygame.sprite.Sprite):
                 if direction == 'horizontal':
                     if self.direction.x > 0: self.rect.right = sprite.rect.left
                     if self.direction.x < 0: self.rect.left = sprite.rect.right
+                else:
+                    if self.direction.y < 0: self.rect.top = sprite.rect.bottom
+                    if self.direction.y > 0: self.rect.bottom = sprite.rect.top
 
     def update(self, dt):
         self.input()
